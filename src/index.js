@@ -9,7 +9,7 @@ const Button = (props) => {
 
 const Statistic = (props) => {
     return (
-    <p>{props.text} {props.type}</p>
+        <tr><td>{props.text}</td><td>{props.type}</td></tr>
     )
 }
 
@@ -21,13 +21,13 @@ const App = () => {
   const all = good + bad + neutral
   let average = 0
   if (all > 0){
-    average = good+(neutral*0)+(bad*(-1))/all
+    average = (good+(neutral*0)+(bad*(-1)))/all
   } else {
      average = 0
   }
   let positive = 0
   if (all > 0){
-      positive = good/all
+      positive = ((good/all)*100).toFixed(2) + '%'
   } else {
       positive = 0
   }
@@ -36,10 +36,19 @@ const App = () => {
     <div>
     <h1>Give Feedback</h1>
     <Button setType={setGood} type={good} text="Good"/><Button setType={setNeutral} type={neutral} text='Neutral'/><Button setType={setBad} type={bad} text="Bad"/>
-    <h1>Statistics</h1>
-    <Statistic type={all} text="All" />
-    <Statistic type={average} text="Average" />
-    <Statistic type={positive} text="Positive" />
+    <table>
+        <thead>
+            <tr><th><h1>Statistics</h1></th></tr>
+        </thead>
+        <tbody>
+        <Statistic type={good} text="Good" />
+        <Statistic type={neutral} text="Neutral" />
+        <Statistic type={bad} text="Bad" />
+        <Statistic type={all} text="All" />
+        <Statistic type={average} text="Average" />
+        <Statistic type={positive} text="Positive" />
+        </tbody>
+    </table>
     </div>
     )
     } else {
