@@ -15,13 +15,18 @@ const Statistics = (props) => {
   } else {
       positive = 0
   }
+  if (all > 0){
   return (
   <div>
     <p>all {all}</p>
     <p>average {average}</p>
     <p>positive {positive}</p>    
   </div>
-)
+)} else {
+      return (
+      <p>No statistics have been collected</p>
+      )
+  }
 }
 const App = () => {
   // save clicks of each button to own state
